@@ -1,0 +1,31 @@
+name: Portfolio checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run portfolio checks
+        run: python run_checks.py
+
+      - name: Run workflow demo
+        working-directory: demo-2-automation-workflow
+        run: python workflow_cli.py --input app/data/sample_leads.csv --output out
+
+      - name: Run extraction demo
+        working-directory: demo-3-data-extraction
+        run: python extractor.py --sources sources.json --output out/report.csv
+

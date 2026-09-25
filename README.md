@@ -1,35 +1,123 @@
-# Codex Freelance Portfolio Pack
+# Python AI Automation Portfolio
 
-This portfolio pack contains three reusable demo projects for remote freelance work:
+Practical demo projects for freelance work in AI chatbots, workflow automation, API integration, and data reporting.
 
-1. AI Customer Support Chatbot
-2. Automation Workflow Assistant
-3. Data Extraction and Reporting Toolkit
+This repository is built as a client-facing portfolio. Each demo is small enough to understand quickly, but structured like real client work: clear inputs, predictable outputs, tests or checks, and documentation.
 
-Each demo is designed to support proposals for Python, AI automation, chatbot, API integration, workflow automation, and data extraction projects.
+## What I Build
 
-## How to use this pack
+I build Python and AI automation tools for small businesses, agencies, and internal teams:
 
-- Send the portfolio page (`index.html`) to prospects when they ask for examples.
-- Link the most relevant demo in each proposal.
-- Reuse the proposal snippets in `proposal_templates.md`.
-- Use `client_questionnaire.md` before accepting a project.
+- Customer support chatbots and FAQ assistants
+- OpenAI API integrations with safe fallback behavior
+- CRM and lead workflow automation
+- API data extraction and CSV or Excel-ready reports
+- Production-style MVPs with documentation and handoff notes
 
-## Recommended positioning
+## Portfolio Demos
 
-Use this wording in your profile:
+| Demo | Best for | What it proves |
+| --- | --- | --- |
+| [AI Customer Support Chatbot](demo-1-ai-chatbot) | Chatbot, FAQ bot, support automation, OpenAI integration | FastAPI backend, knowledge base matching, structured API responses, safe fallback |
+| [Automation Workflow Assistant](demo-2-automation-workflow) | CRM automation, lead review, workflow MVPs | Lead scoring, human review queue, CRM-ready JSON, follow-up drafts |
+| [Data Extraction and Reporting Toolkit](demo-3-data-extraction) | API extraction, CSV reporting, data cleanup | Adapter-based data ingestion, normalization, validation, report export |
 
-> I build practical Python and AI automation tools: customer support chatbots, workflow automation, API integrations, and data extraction systems. My focus is production-style MVPs with clear documentation, testable behavior, and safe handling of business data.
+## Quick Verification
 
-## Demo mapping
+Run the no-dependency checks:
 
-| Client request | Demo to show |
-| --- | --- |
-| AI chatbot, FAQ bot, support assistant | `demo-1-ai-chatbot` |
-| CRM automation, approval workflow, lead routing | `demo-2-automation-workflow` |
-| API data extraction, CSV reports, scheduled collection | `demo-3-data-extraction` |
+```bash
+python run_checks.py
+```
 
-## Safety boundaries
+Expected result:
 
-These demos avoid paywall bypassing, unauthorized scraping, credential harvesting, mass messaging, or platform rule evasion. For real client work, use official APIs, client-owned data, or public data where collection is allowed.
+```text
+All portfolio checks passed.
+```
 
+Run the workflow demos:
+
+```bash
+cd demo-2-automation-workflow
+python workflow_cli.py --input app/data/sample_leads.csv --output out
+```
+
+```bash
+cd demo-3-data-extraction
+python extractor.py --sources sources.json --output out/report.csv
+```
+
+## Chatbot Demo
+
+The chatbot demo uses FastAPI. To run it locally:
+
+```bash
+cd demo-1-ai-chatbot
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+Open:
+
+```text
+http://127.0.0.1:8000
+```
+
+Docker is also available:
+
+```bash
+cd demo-1-ai-chatbot
+docker build -t support-chatbot-demo .
+docker run --rm -p 8000:8000 support-chatbot-demo
+```
+
+## Proposal Assets
+
+- [Proposal templates](proposal_templates.md)
+- [Client questionnaire](client_questionnaire.md)
+- [Delivery notes](DELIVERY_NOTES.md)
+- [Portfolio landing page](index.html)
+- [How to use this portfolio for proposals](docs/how-to-use-for-proposals.md)
+- [Milestone playbook](docs/milestone-playbook.md)
+- [Profile bio drafts](docs/profile-bio.md)
+
+## Safe Automation Policy
+
+These demos avoid:
+
+- Paywall bypass
+- Login bypass
+- Unauthorized scraping
+- Credential harvesting
+- Fake account creation
+- Mass unsolicited messaging
+- Platform rule evasion
+
+For real client work, I use official APIs, client-owned data, approved exports, or public data where collection is allowed.
+
+## Client-Facing Summary
+
+> I build practical Python and AI automation systems: customer support chatbots, API integrations, workflow automation, and data reporting tools. I focus on scoped MVPs that are easy to test, document, and hand off.
+
+## Suggested First Milestone
+
+For most projects, the safest first milestone is:
+
+1. Confirm source data, API access, and acceptance criteria.
+2. Build a working MVP around one end-to-end workflow.
+3. Add tests or verification scripts.
+4. Deliver setup instructions and handoff notes.
+5. Expand only after the first workflow is approved.
+
+## Repository Quality
+
+This repository includes:
+
+- No-dependency smoke checks in `run_checks.py`
+- GitHub Actions workflow in `.github/workflows/portfolio-checks.yml`
+- Docker support for the chatbot demo
+- PowerShell and shell helper scripts in `scripts/`
+- Clear safety boundaries for automation work

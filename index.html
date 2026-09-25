@@ -3,15 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Python and AI Automation Portfolio</title>
+  <title>Python AI Automation Portfolio</title>
+  <meta name="description" content="Portfolio demos for AI chatbots, workflow automation, API integration, and data reporting.">
   <style>
     :root {
       color-scheme: light;
       --ink: #102033;
-      --muted: #5f6f85;
+      --muted: #596a80;
       --line: #d9e1ea;
       --paper: #ffffff;
       --soft: #f5f8fb;
+      --blue: #285e8e;
       --green: #146c43;
       --gold: #9a5b00;
       --red: #a61b1b;
@@ -24,19 +26,27 @@
       background: var(--soft);
       line-height: 1.55;
     }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
     header {
-      background: var(--ink);
+      background: linear-gradient(135deg, #102033 0%, #17344e 100%);
       color: white;
-      padding: 56px 24px;
+      padding: 64px 24px 54px;
     }
     .wrap {
-      width: min(1080px, calc(100% - 40px));
+      width: min(1100px, calc(100% - 40px));
       margin: 0 auto;
     }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+      gap: 36px;
+      align-items: center;
+    }
     h1 {
-      margin: 0 0 14px;
-      font-size: clamp(34px, 6vw, 58px);
-      line-height: 1.05;
+      margin: 0 0 16px;
+      font-size: clamp(36px, 6vw, 62px);
+      line-height: 1.04;
       letter-spacing: 0;
     }
     h2 {
@@ -46,7 +56,7 @@
     }
     h3 {
       margin: 0 0 10px;
-      font-size: 22px;
+      font-size: 21px;
       letter-spacing: 0;
     }
     p { margin: 0 0 14px; }
@@ -55,9 +65,22 @@
       font-size: 20px;
       color: #d7dee8;
     }
-    section {
-      padding: 42px 0;
+    .hero-note {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      padding: 22px;
     }
+    .hero-note strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #ffffff;
+      font-size: 18px;
+    }
+    .hero-note span {
+      color: #d7dee8;
+    }
+    section { padding: 44px 0; }
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -68,7 +91,7 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 22px;
-      min-height: 270px;
+      min-height: 315px;
     }
     .tag {
       display: inline-block;
@@ -80,6 +103,8 @@
       font-weight: 700;
       margin-bottom: 14px;
     }
+    .tag.blue { background: #eaf2ff; color: var(--blue); }
+    .tag.gold { background: #fff7e8; color: var(--gold); }
     ul {
       padding-left: 20px;
       margin: 12px 0 0;
@@ -91,30 +116,71 @@
       border-radius: 8px;
       padding: 26px;
     }
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
     .risk {
       border-left: 5px solid var(--gold);
+    }
+    .proof {
+      border-left: 5px solid var(--green);
     }
     code {
       background: #edf2f7;
       padding: 2px 5px;
       border-radius: 4px;
     }
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 6px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .button.primary {
+      background: var(--green);
+      border-color: var(--green);
+      color: white;
+    }
     footer {
       padding: 30px 0 48px;
       color: var(--muted);
       font-size: 14px;
     }
-    @media (max-width: 860px) {
-      .grid { grid-template-columns: 1fr; }
-      header { padding: 42px 20px; }
+    @media (max-width: 900px) {
+      .hero,
+      .grid,
+      .split { grid-template-columns: 1fr; }
+      header { padding: 46px 20px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="wrap">
-      <h1>Python and AI Automation Portfolio</h1>
-      <p class="lead">Practical demos for customer support chatbots, business workflow automation, API integration, and data extraction projects.</p>
+    <div class="wrap hero">
+      <div>
+        <h1>Python AI Automation Portfolio</h1>
+        <p class="lead">Client-ready demos for support chatbots, business workflow automation, API integration, and data reporting.</p>
+        <div class="button-row">
+          <a class="button primary" href="README.md">View project README</a>
+          <a class="button" href="proposal_templates.md">Proposal templates</a>
+          <a class="button" href="client_questionnaire.md">Client questionnaire</a>
+        </div>
+      </div>
+      <aside class="hero-note">
+        <strong>Positioning</strong>
+        <span>I build practical Python and AI automation MVPs that are scoped, testable, documented, and safe to hand off.</span>
+      </aside>
     </div>
   </header>
 
@@ -124,61 +190,71 @@
         <article class="card">
           <span class="tag">AI Chatbot</span>
           <h3>Customer Support Assistant</h3>
-          <p>A FastAPI demo that answers from an approved FAQ knowledge base and can optionally use an AI fallback.</p>
+          <p>FastAPI demo that answers from an approved FAQ knowledge base, returns structured API responses, and falls back safely when confidence is low.</p>
           <ul>
-            <li>Knowledge base search</li>
+            <li>Knowledge base matching</li>
             <li>Structured JSON API</li>
-            <li>Simple chat interface</li>
-            <li>Testable matching logic</li>
+            <li>Browser chat interface</li>
+            <li>Docker-ready backend</li>
           </ul>
-          <p><code>demo-1-ai-chatbot</code></p>
+          <p><a href="demo-1-ai-chatbot/README.md">Open chatbot demo</a></p>
         </article>
 
         <article class="card">
-          <span class="tag">Automation</span>
+          <span class="tag blue">Automation</span>
           <h3>Workflow Assistant</h3>
-          <p>A lead-to-CRM style automation that scores records, creates review tasks, and prepares human-approved follow-ups.</p>
+          <p>Lead-to-CRM style workflow that scores approved records, creates a review queue, prepares CRM payloads, and drafts human-approved follow-ups.</p>
           <ul>
-            <li>Lead scoring</li>
-            <li>Approval queue</li>
-            <li>CRM payload generation</li>
-            <li>Audit-friendly output</li>
+            <li>Lead scoring rules</li>
+            <li>Human review queue</li>
+            <li>CRM-ready JSON</li>
+            <li>Audit-friendly outputs</li>
           </ul>
-          <p><code>demo-2-automation-workflow</code></p>
+          <p><a href="demo-2-automation-workflow/README.md">Open workflow demo</a></p>
         </article>
 
         <article class="card">
-          <span class="tag">Data</span>
+          <span class="tag gold">Data</span>
           <h3>Extraction Toolkit</h3>
-          <p>A safe data extraction pipeline that uses approved JSON sources, normalizes fields, validates records, and exports CSV.</p>
+          <p>Safe extraction pipeline that reads approved JSON sources, normalizes fields, validates records, and exports CSV reports.</p>
           <ul>
             <li>Adapter-based sources</li>
             <li>Field normalization</li>
             <li>Validation report</li>
             <li>CSV output</li>
           </ul>
-          <p><code>demo-3-data-extraction</code></p>
+          <p><a href="demo-3-data-extraction/README.md">Open extraction demo</a></p>
         </article>
       </div>
     </section>
 
     <section>
-      <div class="wrap panel">
-        <h2>What this proves</h2>
-        <p>This portfolio shows that I can turn a business request into a working Python MVP with clear boundaries, testable behavior, documentation, and handoff notes. The demos focus on practical delivery rather than research prototypes.</p>
+      <div class="wrap split">
+        <div class="panel proof">
+          <h2>What this proves</h2>
+          <p>This portfolio shows the delivery pattern I use for freelance projects: define a narrow MVP, build one working workflow, add verification, document the handoff, then expand after approval.</p>
+          <p>Each demo is intentionally small so prospects can inspect the result quickly.</p>
+        </div>
+        <div class="panel risk">
+          <h2>Safety boundaries</h2>
+          <p>I build automation around official APIs, client-owned data, approved exports, or public data where collection is allowed.</p>
+          <p>I do not build paywall bypassing, account evasion, credential harvesting, fake account systems, or mass unsolicited messaging tools.</p>
+        </div>
       </div>
     </section>
 
     <section>
-      <div class="wrap panel risk">
-        <h2>Safe automation boundaries</h2>
-        <p>I build automation around approved APIs, client-owned data, or public sources where collection is allowed. I do not build paywall bypassing, account evasion, spam systems, or tools that ignore platform rules.</p>
+      <div class="wrap panel">
+        <h2>How to verify locally</h2>
+        <p>Run the portfolio checks from the repository root:</p>
+        <p><code>python run_checks.py</code></p>
+        <p>Expected output: <code>All portfolio checks passed.</code></p>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap">Prepared as a reusable freelance portfolio pack.</div>
+    <div class="wrap">Prepared as a reusable Python and AI automation freelance portfolio.</div>
   </footer>
 </body>
 </html>
