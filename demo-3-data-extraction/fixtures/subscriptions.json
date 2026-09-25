@@ -1,0 +1,17 @@
+[
+  {
+    "account_id": "CUS-1001",
+    "plan": "Support Automation Basic",
+    "segment": "saas",
+    "monthly_value": 99.0,
+    "updated_at": "2026-09-19"
+  },
+  {
+    "account_id": "CUS-1002",
+    "plan": "Support Automation Pro",
+    "segment": "saas",
+    "monthly_value": 249.0,
+    "updated_at": "2026-09-21"
+  }
+]
+

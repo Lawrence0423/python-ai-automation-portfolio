@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python and AI Automation Portfolio</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #102033;
+      --muted: #5f6f85;
+      --line: #d9e1ea;
+      --paper: #ffffff;
+      --soft: #f5f8fb;
+      --green: #146c43;
+      --gold: #9a5b00;
+      --red: #a61b1b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      color: var(--ink);
+      background: var(--soft);
+      line-height: 1.55;
+    }
+    header {
+      background: var(--ink);
+      color: white;
+      padding: 56px 24px;
+    }
+    .wrap {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(34px, 6vw, 58px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 0 0 18px;
+      font-size: 30px;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+    p { margin: 0 0 14px; }
+    .lead {
+      max-width: 760px;
+      font-size: 20px;
+      color: #d7dee8;
+    }
+    section {
+      padding: 42px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      min-height: 270px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: #eaf5ef;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    ul {
+      padding-left: 20px;
+      margin: 12px 0 0;
+    }
+    li { margin: 7px 0; }
+    .panel {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 26px;
+    }
+    .risk {
+      border-left: 5px solid var(--gold);
+    }
+    code {
+      background: #edf2f7;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    footer {
+      padding: 30px 0 48px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      header { padding: 42px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Python and AI Automation Portfolio</h1>
+      <p class="lead">Practical demos for customer support chatbots, business workflow automation, API integration, and data extraction projects.</p>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap grid">
+        <article class="card">
+          <span class="tag">AI Chatbot</span>
+          <h3>Customer Support Assistant</h3>
+          <p>A FastAPI demo that answers from an approved FAQ knowledge base and can optionally use an AI fallback.</p>
+          <ul>
+            <li>Knowledge base search</li>
+            <li>Structured JSON API</li>
+            <li>Simple chat interface</li>
+            <li>Testable matching logic</li>
+          </ul>
+          <p><code>demo-1-ai-chatbot</code></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Automation</span>
+          <h3>Workflow Assistant</h3>
+          <p>A lead-to-CRM style automation that scores records, creates review tasks, and prepares human-approved follow-ups.</p>
+          <ul>
+            <li>Lead scoring</li>
+            <li>Approval queue</li>
+            <li>CRM payload generation</li>
+            <li>Audit-friendly output</li>
+          </ul>
+          <p><code>demo-2-automation-workflow</code></p>
+        </article>
+
+        <article class="card">
+          <span class="tag">Data</span>
+          <h3>Extraction Toolkit</h3>
+          <p>A safe data extraction pipeline that uses approved JSON sources, normalizes fields, validates records, and exports CSV.</p>
+          <ul>
+            <li>Adapter-based sources</li>
+            <li>Field normalization</li>
+            <li>Validation report</li>
+            <li>CSV output</li>
+          </ul>
+          <p><code>demo-3-data-extraction</code></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap panel">
+        <h2>What this proves</h2>
+        <p>This portfolio shows that I can turn a business request into a working Python MVP with clear boundaries, testable behavior, documentation, and handoff notes. The demos focus on practical delivery rather than research prototypes.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap panel risk">
+        <h2>Safe automation boundaries</h2>
+        <p>I build automation around approved APIs, client-owned data, or public sources where collection is allowed. I do not build paywall bypassing, account evasion, spam systems, or tools that ignore platform rules.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Prepared as a reusable freelance portfolio pack.</div>
+  </footer>
+</body>
+</html>
+

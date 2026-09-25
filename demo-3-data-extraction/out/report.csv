@@ -1,0 +1,5 @@
+source,record_id,title,category,value,updated_at
+products,ART-001,Printable Art Pack,digital_goods,29.0,2026-09-20
+products,BOOK-014,Travel Notebook,physical_goods,18.5,2026-09-22
+subscriptions,CUS-1001,Support Automation Basic,saas,99.0,2026-09-19
+subscriptions,CUS-1002,Support Automation Pro,saas,249.0,2026-09-21

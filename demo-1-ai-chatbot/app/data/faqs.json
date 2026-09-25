@@ -1,0 +1,27 @@
+[
+  {
+    "id": "shipping-time",
+    "question": "How long does shipping take?",
+    "answer": "Standard shipping usually takes 3 to 5 business days. Express shipping usually takes 1 to 2 business days.",
+    "tags": ["shipping", "delivery", "order"]
+  },
+  {
+    "id": "return-policy",
+    "question": "How do I return an order?",
+    "answer": "You can request a return within 30 days of delivery. The item must be unused and include the original packaging.",
+    "tags": ["return", "refund", "order"]
+  },
+  {
+    "id": "order-status",
+    "question": "Where can I check my order status?",
+    "answer": "You can check order status from your account dashboard. If you checked out as a guest, use the tracking link in your confirmation email.",
+    "tags": ["tracking", "order", "account"]
+  },
+  {
+    "id": "support-ticket",
+    "question": "How do I contact support?",
+    "answer": "Send a message through the support form with your order number and a short description of the issue. The team replies within one business day.",
+    "tags": ["support", "ticket", "help"]
+  }
+]
+

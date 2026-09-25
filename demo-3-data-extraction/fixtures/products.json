@@ -1,0 +1,17 @@
+[
+  {
+    "sku": "ART-001",
+    "name": "Printable Art Pack",
+    "category": "digital_goods",
+    "price": 29.0,
+    "updated_at": "2026-09-20"
+  },
+  {
+    "sku": "BOOK-014",
+    "name": "Travel Notebook",
+    "category": "physical_goods",
+    "price": 18.5,
+    "updated_at": "2026-09-22"
+  }
+]
+

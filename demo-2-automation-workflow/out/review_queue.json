@@ -1,0 +1,62 @@
+[
+  {
+    "lead": {
+      "company": "Bright Dental Studio",
+      "contact_name": "Ava Chen",
+      "email": "ava@example.com",
+      "source": "website",
+      "employees": 18,
+      "interest": "chatbot",
+      "notes": "Needs FAQ and booking automation"
+    },
+    "score": 75,
+    "priority": "high",
+    "reason": "strong source, high-value automation need, specific workflow mentioned",
+    "recommended_next_step": "Send tailored discovery questions and request API or workflow details."
+  },
+  {
+    "lead": {
+      "company": "Northwind Parts",
+      "contact_name": "Liam Carter",
+      "email": "liam@example.com",
+      "source": "referral",
+      "employees": 85,
+      "interest": "crm_sync",
+      "notes": "Wants order status synced into CRM"
+    },
+    "score": 100,
+    "priority": "high",
+    "reason": "strong source, team size suggests budget, high-value automation need, specific workflow mentioned",
+    "recommended_next_step": "Send tailored discovery questions and request API or workflow details."
+  },
+  {
+    "lead": {
+      "company": "Solo Fitness",
+      "contact_name": "Mia Lopez",
+      "email": "mia@example.com",
+      "source": "newsletter",
+      "employees": 4,
+      "interest": "unknown",
+      "notes": "Asked general pricing question"
+    },
+    "score": 0,
+    "priority": "low",
+    "reason": "limited fit signals",
+    "recommended_next_step": "Send a short qualification reply before spending time on a proposal."
+  },
+  {
+    "lead": {
+      "company": "Urban Medspa",
+      "contact_name": "Noah Smith",
+      "email": "noah@example.com",
+      "source": "website",
+      "employees": 32,
+      "interest": "voice_agent",
+      "notes": "Wants front desk automation and booking follow-up"
+    },
+    "score": 100,
+    "priority": "high",
+    "reason": "strong source, team size suggests budget, high-value automation need, specific workflow mentioned",
+    "recommended_next_step": "Send tailored discovery questions and request API or workflow details."
+  }
+]

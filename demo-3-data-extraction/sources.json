@@ -1,0 +1,27 @@
+[
+  {
+    "name": "products",
+    "type": "fixture",
+    "path": "fixtures/products.json",
+    "mapping": {
+      "record_id": "sku",
+      "title": "name",
+      "category": "category",
+      "value": "price",
+      "updated_at": "updated_at"
+    }
+  },
+  {
+    "name": "subscriptions",
+    "type": "fixture",
+    "path": "fixtures/subscriptions.json",
+    "mapping": {
+      "record_id": "account_id",
+      "title": "plan",
+      "category": "segment",
+      "value": "monthly_value",
+      "updated_at": "updated_at"
+    }
+  }
+]
+

@@ -1,0 +1,54 @@
+[
+  {
+    "company": "Bright Dental Studio",
+    "contact": {
+      "name": "Ava Chen",
+      "email": "ava@example.com"
+    },
+    "source": "website",
+    "interest": "chatbot",
+    "score": 75,
+    "priority": "high",
+    "notes": "Needs FAQ and booking automation",
+    "status": "needs_human_review"
+  },
+  {
+    "company": "Northwind Parts",
+    "contact": {
+      "name": "Liam Carter",
+      "email": "liam@example.com"
+    },
+    "source": "referral",
+    "interest": "crm_sync",
+    "score": 100,
+    "priority": "high",
+    "notes": "Wants order status synced into CRM",
+    "status": "needs_human_review"
+  },
+  {
+    "company": "Solo Fitness",
+    "contact": {
+      "name": "Mia Lopez",
+      "email": "mia@example.com"
+    },
+    "source": "newsletter",
+    "interest": "unknown",
+    "score": 0,
+    "priority": "low",
+    "notes": "Asked general pricing question",
+    "status": "needs_human_review"
+  },
+  {
+    "company": "Urban Medspa",
+    "contact": {
+      "name": "Noah Smith",
+      "email": "noah@example.com"
+    },
+    "source": "website",
+    "interest": "voice_agent",
+    "score": 100,
+    "priority": "high",
+    "notes": "Wants front desk automation and booking follow-up",
+    "status": "needs_human_review"
+  }
+]

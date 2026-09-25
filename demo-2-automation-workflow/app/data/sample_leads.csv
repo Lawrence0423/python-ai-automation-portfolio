@@ -1,0 +1,6 @@
+company,contact_name,email,source,employees,interest,notes
+Bright Dental Studio,Ava Chen,ava@example.com,website,18,chatbot,"Needs FAQ and booking automation"
+Northwind Parts,Liam Carter,liam@example.com,referral,85,crm_sync,"Wants order status synced into CRM"
+Solo Fitness,Mia Lopez,mia@example.com,newsletter,4,unknown,"Asked general pricing question"
+Urban Medspa,Noah Smith,noah@example.com,website,32,voice_agent,"Wants front desk automation and booking follow-up"
+
