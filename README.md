@@ -18,7 +18,7 @@ I build Python and AI automation tools for small businesses, agencies, and inter
 
 | Demo | Best for | What it proves |
 | --- | --- | --- |
-| [AI Customer Support Chatbot](demo-1-ai-chatbot) | Chatbot, FAQ bot, support automation, OpenAI integration | FastAPI backend, knowledge base matching, structured API responses, safe fallback |
+| [AI Customer Support Chatbot](demo-1-ai-chatbot) and [static live demo](chatbot-demo.html) | Chatbot, FAQ bot, support automation, OpenAI integration | FastAPI backend, browser-playable static demo, knowledge base matching, structured API responses, safe fallback |
 | [Automation Workflow Assistant](demo-2-automation-workflow) | CRM automation, lead review, workflow MVPs | Lead scoring, human review queue, CRM-ready JSON, follow-up drafts |
 | [Data Extraction and Reporting Toolkit](demo-3-data-extraction) | API extraction, CSV reporting, data cleanup | Adapter-based data ingestion, normalization, validation, report export |
 
@@ -50,7 +50,15 @@ python extractor.py --sources sources.json --output out/report.csv
 
 ## Chatbot Demo
 
-The chatbot demo uses FastAPI. To run it locally:
+The portfolio includes a zero-cost static chatbot demo that works on GitHub Pages:
+
+```text
+chatbot-demo.html
+```
+
+This is the best link for prospects because it runs in the browser without a server, API key, or cloud bill.
+
+The backend version uses FastAPI. To run it locally:
 
 ```bash
 cd demo-1-ai-chatbot
