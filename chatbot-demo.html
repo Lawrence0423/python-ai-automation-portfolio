@@ -3,27 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Live Chatbot Demo</title>
-  <meta name="description" content="A zero-cost static chatbot demo for the Python AI Automation Portfolio.">
+  <title>AI Support Desk Demo</title>
+  <meta name="description" content="A zero-cost static support desk demo for AI chatbot and workflow automation proposals.">
   <style>
     :root {
       color-scheme: light;
       --ink: #102033;
-      --muted: #596a80;
+      --muted: #5a6b80;
       --line: #d9e1ea;
       --paper: #ffffff;
       --soft: #f5f8fb;
       --green: #146c43;
       --blue: #285e8e;
       --gold: #9a5b00;
+      --red: #a61b1b;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, "Microsoft JhengHei", sans-serif;
-      background: var(--soft);
       color: var(--ink);
-      line-height: 1.55;
+      background: var(--soft);
+      line-height: 1.5;
     }
     a { color: var(--blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -33,60 +34,115 @@
       padding: 28px 20px;
     }
     .wrap {
-      width: min(980px, calc(100% - 36px));
+      width: min(1180px, calc(100% - 36px));
       margin: 0 auto;
     }
     .topbar {
       display: flex;
+      align-items: flex-start;
       justify-content: space-between;
-      gap: 16px;
-      align-items: center;
+      gap: 18px;
     }
     h1 {
       margin: 0;
-      font-size: clamp(28px, 5vw, 44px);
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.05;
       letter-spacing: 0;
-      line-height: 1.08;
     }
+    h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+    p { margin: 0 0 12px; }
     .sub {
+      max-width: 760px;
       margin: 10px 0 0;
       color: #d7dee8;
-      max-width: 720px;
       font-size: 18px;
     }
-    main {
-      padding: 34px 0 48px;
-    }
-    .layout {
+    main { padding: 28px 0 48px; }
+    .workspace {
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
-      gap: 20px;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 18px;
       align-items: start;
     }
     .panel {
-      background: white;
+      background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 22px;
+      padding: 20px;
     }
-    .chat {
-      min-height: 420px;
+    .chat-panel {
+      display: grid;
+      grid-template-rows: auto minmax(360px, 1fr) auto auto;
+      min-height: 680px;
+    }
+    .toolbar {
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .scenario-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tab,
+    .chip,
+    button {
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: white;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 9px 11px;
+    }
+    .tab.active {
+      background: #eaf5ef;
+      border-color: #aad6bf;
+      color: var(--green);
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #edf7f1;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
     }
     .log {
-      flex: 1;
-      min-height: 320px;
       background: #fbfcfe;
       border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 14px;
+      min-height: 360px;
       overflow-y: auto;
+      padding: 14px;
     }
     .message {
       max-width: 88%;
       margin: 10px 0;
-      padding: 10px 12px;
+      padding: 11px 12px;
       border-radius: 8px;
       white-space: pre-wrap;
     }
@@ -100,7 +156,7 @@
       margin-left: auto;
     }
     .meta {
-      margin-top: 6px;
+      margin-top: 7px;
       color: var(--muted);
       font-size: 13px;
     }
@@ -111,25 +167,17 @@
     }
     input {
       flex: 1;
-      padding: 13px 12px;
       border: 1px solid #cbd5e1;
       border-radius: 7px;
+      padding: 13px 12px;
       font-size: 16px;
     }
-    button {
-      border: 0;
-      border-radius: 7px;
-      padding: 13px 16px;
-      color: white;
+    button.primary {
       background: var(--green);
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 15px;
-    }
-    button.secondary {
-      background: #ffffff;
-      color: var(--ink);
-      border: 1px solid #cbd5e1;
+      border-color: var(--green);
+      color: white;
+      padding-left: 16px;
+      padding-right: 16px;
     }
     .chips {
       display: flex;
@@ -138,30 +186,68 @@
       margin-top: 14px;
     }
     .chip {
-      border: 1px solid #cbd5e1;
-      background: #ffffff;
-      color: var(--ink);
+      font-weight: 600;
       padding: 8px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
     }
-    h2 {
-      margin: 0 0 12px;
-      font-size: 24px;
-      letter-spacing: 0;
+    .side-stack {
+      display: grid;
+      gap: 14px;
     }
-    h3 {
-      margin: 20px 0 8px;
-      font-size: 18px;
-      letter-spacing: 0;
+    .small {
+      color: var(--muted);
+      font-size: 13px;
     }
-    ul {
-      margin: 10px 0 0;
-      padding-left: 20px;
+    .record {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
     }
-    li { margin: 7px 0; }
-    .note {
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px solid #edf1f5;
+      padding-bottom: 7px;
+    }
+    .row:last-child { border-bottom: 0; padding-bottom: 0; }
+    .label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .value {
+      font-weight: 700;
+      text-align: right;
+    }
+    .action-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fbfcfe;
+      margin-top: 10px;
+    }
+    .action-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .source-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .source-list li { margin: 7px 0; }
+    .meter {
+      height: 10px;
+      background: #e8eef5;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0 4px;
+    }
+    .meter-fill {
+      height: 100%;
+      width: 0;
+      background: var(--green);
+      transition: width 160ms ease;
+    }
+    .banner {
       border-left: 5px solid var(--gold);
     }
     code {
@@ -169,11 +255,14 @@
       border-radius: 4px;
       padding: 2px 5px;
     }
-    @media (max-width: 840px) {
-      .layout { grid-template-columns: 1fr; }
-      .topbar { align-items: flex-start; flex-direction: column; }
+    @media (max-width: 980px) {
+      .workspace { grid-template-columns: 1fr; }
+      .topbar { flex-direction: column; }
+    }
+    @media (max-width: 640px) {
+      .toolbar { align-items: flex-start; flex-direction: column; }
       form { flex-direction: column; }
-      button { width: 100%; }
+      button.primary { width: 100%; }
     }
   </style>
 </head>
@@ -181,78 +270,254 @@
   <header>
     <div class="wrap topbar">
       <div>
-        <h1>Customer Support Chatbot Demo</h1>
-        <p class="sub">A free static demo that runs entirely in the browser. No server, no API key, no cloud bill.</p>
+        <h1>AI Support Desk Demo</h1>
+        <p class="sub">A richer static demo that simulates FAQ answers, order lookup, ticket creation, and agent handoff without any paid backend.</p>
       </div>
       <a href="index.html" style="color:#d7dee8;">Back to portfolio</a>
     </div>
   </header>
 
   <main>
-    <div class="wrap layout">
-      <section class="panel chat" aria-label="Chatbot demo">
-        <h2>Try the demo</h2>
-        <div id="log" class="log"></div>
-        <form id="chat-form">
-          <input id="message" name="message" placeholder="Ask about returns, shipping, order status, or support" autocomplete="off">
-          <button type="submit">Send</button>
-        </form>
-        <div class="chips" aria-label="Example questions">
-          <button class="chip" type="button">How do I return an order?</button>
-          <button class="chip" type="button">Where can I check my order status?</button>
-          <button class="chip" type="button">How long does shipping take?</button>
-          <button class="chip" type="button">How do I contact support?</button>
+    <div class="wrap workspace">
+      <section class="panel chat-panel" aria-label="AI support desk demo">
+        <div class="toolbar">
+          <div>
+            <h2>Customer conversation</h2>
+            <p class="small">Switch scenario to show how the same architecture adapts to different clients.</p>
+          </div>
+          <span class="status-pill"><span class="status-dot"></span>Zero-cost static demo</span>
         </div>
+
+        <div class="scenario-tabs" aria-label="Industry scenarios">
+          <button class="tab active" type="button" data-scenario="ecommerce">E-commerce</button>
+          <button class="tab" type="button" data-scenario="clinic">Clinic</button>
+          <button class="tab" type="button" data-scenario="saas">SaaS</button>
+        </div>
+
+        <div id="log" class="log" aria-live="polite"></div>
+
+        <form id="chat-form">
+          <input id="message" name="message" placeholder="Ask about returns, shipping, appointments, billing, or support" autocomplete="off">
+          <button class="primary" type="submit">Send</button>
+        </form>
+
+        <div id="chips" class="chips" aria-label="Example questions"></div>
       </section>
 
-      <aside class="panel note">
-        <h2>What this shows</h2>
-        <p>This simulates the customer-facing behavior of a support chatbot: it matches user questions to an approved FAQ knowledge base and falls back safely when confidence is low.</p>
-        <h3>For a real client</h3>
-        <ul>
-          <li>The FastAPI version can connect to CRM, order, ticket, or helpdesk APIs.</li>
-          <li>Approved FAQ answers stay consistent.</li>
-          <li>Low-confidence questions can route to human review.</li>
-        </ul>
-        <h3>Why static here</h3>
-        <p>This page is hosted on GitHub Pages, so it costs <code>NT$0</code> to run and cannot create cloud usage charges.</p>
+      <aside class="side-stack">
+        <section class="panel">
+          <h2>Customer context</h2>
+          <div id="customer-record" class="record"></div>
+        </section>
+
+        <section class="panel">
+          <h2>Agent panel</h2>
+          <p class="small">This panel shows what a real backend could send to support staff or CRM.</p>
+          <div class="meter" aria-label="Confidence score"><div id="confidence-fill" class="meter-fill"></div></div>
+          <p id="confidence-label" class="small">Confidence: waiting for question</p>
+          <div id="action-card" class="action-card">
+            <div class="action-title">Next action</div>
+            <div class="small">Ask a question to generate a suggested action.</div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Matched sources</h2>
+          <ul id="sources" class="source-list">
+            <li class="small">No source selected yet.</li>
+          </ul>
+        </section>
+
+        <section class="panel banner">
+          <h2>Why this stays free</h2>
+          <p>This page runs entirely in the browser on GitHub Pages. It does not call OpenAI, store customer data, or run a paid server.</p>
+          <p class="small">A real client version can connect the same flow to FastAPI, OpenAI, CRM, order systems, or helpdesk tools.</p>
+        </section>
       </aside>
     </div>
   </main>
 
   <script>
-    const faqs = [
-      {
-        id: "shipping-time",
-        question: "How long does shipping take?",
-        answer: "Standard shipping usually takes 3 to 5 business days. Express shipping usually takes 1 to 2 business days.",
-        tags: ["shipping", "delivery", "order"]
+    const scenarios = {
+      ecommerce: {
+        name: "E-commerce",
+        greeting: "Hi, I can help with returns, shipping, order status, or support tickets for this sample store.",
+        customer: {
+          name: "Ava Chen",
+          account: "VIP customer",
+          order: "ORD-1042",
+          status: "Out for delivery",
+          value: "$148.00"
+        },
+        examples: [
+          "Where can I check my order status?",
+          "How do I return an order?",
+          "Create a support ticket for a damaged item",
+          "How long does shipping take?"
+        ],
+        intents: [
+          {
+            id: "order-status",
+            title: "Order status lookup",
+            keywords: ["order", "status", "tracking", "where", "delivery"],
+            answer: "Your sample order ORD-1042 is currently out for delivery. In a production version, this answer would come from the store's order API.",
+            confidence: 0.94,
+            action: "Show order status and provide tracking link",
+            sources: ["Order API: ORD-1042", "FAQ: guest and account order tracking"]
+          },
+          {
+            id: "return-policy",
+            title: "Return policy",
+            keywords: ["return", "refund", "exchange", "send", "back"],
+            answer: "You can request a return within 30 days of delivery. The item should be unused and include the original packaging.",
+            confidence: 0.91,
+            action: "Offer return request form and policy summary",
+            sources: ["FAQ: return policy", "Policy page: 30-day return window"]
+          },
+          {
+            id: "ticket-damaged",
+            title: "Ticket creation",
+            keywords: ["ticket", "damaged", "broken", "issue", "support", "contact"],
+            answer: "I created a draft support ticket for a damaged item. A production version would send this to Zendesk, Freshdesk, HubSpot, or another helpdesk system after confirmation.",
+            confidence: 0.88,
+            action: "Draft ticket: damaged item for order ORD-1042",
+            sources: ["Helpdesk workflow: damaged item", "Customer record: Ava Chen"]
+          },
+          {
+            id: "shipping-time",
+            title: "Shipping estimate",
+            keywords: ["shipping", "ship", "long", "take", "express", "delivery"],
+            answer: "Standard shipping usually takes 3 to 5 business days. Express shipping usually takes 1 to 2 business days.",
+            confidence: 0.89,
+            action: "Answer from approved FAQ",
+            sources: ["FAQ: shipping time"]
+          }
+        ]
       },
-      {
-        id: "return-policy",
-        question: "How do I return an order?",
-        answer: "You can request a return within 30 days of delivery. The item must be unused and include the original packaging.",
-        tags: ["return", "refund", "order"]
+      clinic: {
+        name: "Clinic",
+        greeting: "Hi, I can help with appointment questions, visit preparation, reminders, or routing to clinic staff.",
+        customer: {
+          name: "Mia Lopez",
+          account: "Returning patient",
+          order: "Appointment A-218",
+          status: "Confirmed tomorrow 10:30",
+          value: "General consultation"
+        },
+        examples: [
+          "What time is my appointment?",
+          "Can I reschedule my appointment?",
+          "What should I bring to the visit?",
+          "Create a staff follow-up ticket"
+        ],
+        intents: [
+          {
+            id: "appointment-time",
+            title: "Appointment lookup",
+            keywords: ["appointment", "time", "when", "schedule", "tomorrow"],
+            answer: "Your sample appointment A-218 is confirmed for tomorrow at 10:30. A production version would check the clinic calendar or booking API.",
+            confidence: 0.93,
+            action: "Show appointment time and reminder",
+            sources: ["Scheduling API: A-218", "Patient profile: Mia Lopez"]
+          },
+          {
+            id: "reschedule",
+            title: "Reschedule request",
+            keywords: ["reschedule", "change", "move", "cancel", "another"],
+            answer: "I can prepare a reschedule request for staff review. In a real system, this could show available time slots before confirming changes.",
+            confidence: 0.87,
+            action: "Create reschedule request for staff review",
+            sources: ["Clinic workflow: reschedule request", "Appointment A-218"]
+          },
+          {
+            id: "visit-prep",
+            title: "Visit preparation",
+            keywords: ["bring", "prepare", "document", "insurance", "visit"],
+            answer: "Please bring your ID, insurance card, and a list of current medications. Arriving 10 minutes early is recommended.",
+            confidence: 0.86,
+            action: "Send visit preparation checklist",
+            sources: ["Clinic FAQ: visit preparation"]
+          },
+          {
+            id: "staff-ticket",
+            title: "Staff handoff",
+            keywords: ["ticket", "staff", "follow", "call", "contact"],
+            answer: "I created a draft staff follow-up ticket. A real version would send it to the clinic inbox or helpdesk.",
+            confidence: 0.84,
+            action: "Draft staff ticket: patient follow-up",
+            sources: ["Clinic workflow: staff follow-up", "Patient profile: Mia Lopez"]
+          }
+        ]
       },
-      {
-        id: "order-status",
-        question: "Where can I check my order status?",
-        answer: "You can check order status from your account dashboard. If you checked out as a guest, use the tracking link in your confirmation email.",
-        tags: ["tracking", "order", "account"]
-      },
-      {
-        id: "support-ticket",
-        question: "How do I contact support?",
-        answer: "Send a message through the support form with your order number and a short description of the issue. The team replies within one business day.",
-        tags: ["support", "ticket", "help"]
+      saas: {
+        name: "SaaS",
+        greeting: "Hi, I can help with billing, subscription status, onboarding, or technical support routing.",
+        customer: {
+          name: "Northwind Parts",
+          account: "Pro plan",
+          order: "Subscription SUB-772",
+          status: "Active",
+          value: "$249/month"
+        },
+        examples: [
+          "What plan are we on?",
+          "How do I update billing?",
+          "Create a technical support ticket",
+          "Where can I find onboarding steps?"
+        ],
+        intents: [
+          {
+            id: "plan-status",
+            title: "Subscription lookup",
+            keywords: ["plan", "subscription", "status", "active", "account"],
+            answer: "Northwind Parts is on the Pro plan and the sample subscription SUB-772 is active. A production version would query Stripe, Chargebee, or the app database.",
+            confidence: 0.92,
+            action: "Show subscription and account status",
+            sources: ["Billing API: SUB-772", "Account profile: Northwind Parts"]
+          },
+          {
+            id: "billing-update",
+            title: "Billing support",
+            keywords: ["billing", "payment", "card", "invoice", "update"],
+            answer: "You can update billing from the account settings page. For security, a real assistant should send a secure billing link instead of collecting card details in chat.",
+            confidence: 0.9,
+            action: "Send secure billing portal link",
+            sources: ["Billing FAQ: update payment method", "Security rule: do not collect card data"]
+          },
+          {
+            id: "technical-ticket",
+            title: "Technical ticket",
+            keywords: ["technical", "bug", "issue", "ticket", "support", "error"],
+            answer: "I created a draft technical support ticket. A real version would include logs, browser details, account ID, and priority.",
+            confidence: 0.86,
+            action: "Draft ticket: technical issue for Pro account",
+            sources: ["Support workflow: technical ticket", "Account profile: Northwind Parts"]
+          },
+          {
+            id: "onboarding",
+            title: "Onboarding guide",
+            keywords: ["onboarding", "setup", "start", "guide", "steps"],
+            answer: "The onboarding flow starts with workspace setup, user invitations, API key configuration, and the first automation test.",
+            confidence: 0.83,
+            action: "Share onboarding checklist",
+            sources: ["Docs: onboarding checklist"]
+          }
+        ]
       }
-    ];
+    };
 
-    const stopWords = new Set(["a", "an", "and", "are", "can", "do", "does", "for", "how", "i", "is", "it", "my", "of", "the", "to", "what", "where", "with", "you"]);
+    const stopWords = new Set(["a", "an", "and", "are", "can", "do", "does", "for", "how", "i", "is", "it", "my", "of", "on", "the", "to", "what", "where", "with", "you", "we"]);
     const log = document.querySelector("#log");
     const form = document.querySelector("#chat-form");
     const input = document.querySelector("#message");
-    const chips = document.querySelectorAll(".chip");
+    const chips = document.querySelector("#chips");
+    const tabs = document.querySelectorAll(".tab");
+    const customerRecord = document.querySelector("#customer-record");
+    const confidenceFill = document.querySelector("#confidence-fill");
+    const confidenceLabel = document.querySelector("#confidence-label");
+    const actionCard = document.querySelector("#action-card");
+    const sources = document.querySelector("#sources");
+    let activeScenario = "ecommerce";
 
     function tokenize(text) {
       return new Set(
@@ -262,41 +527,77 @@
       );
     }
 
-    function score(messageTokens, faq) {
-      const faqTokens = tokenize(`${faq.question} ${faq.answer} ${faq.tags.join(" ")}`);
-      if (!messageTokens.size || !faqTokens.size) return 0;
+    function scoreIntent(tokens, intent) {
+      if (!tokens.size) return 0;
       let overlap = 0;
-      for (const token of messageTokens) {
-        if (faqTokens.has(token)) overlap += 1;
+      for (const token of tokens) {
+        if (intent.keywords.includes(token)) overlap += 1;
       }
-      return overlap / messageTokens.size;
+      return overlap / tokens.size;
     }
 
-    function findAnswer(message) {
+    function findIntent(message) {
+      const scenario = scenarios[activeScenario];
       const tokens = tokenize(message);
       let best = null;
       let bestScore = 0;
-      for (const faq of faqs) {
-        const faqScore = score(tokens, faq);
-        if (faqScore > bestScore) {
-          best = faq;
-          bestScore = faqScore;
+      for (const intent of scenario.intents) {
+        const currentScore = scoreIntent(tokens, intent);
+        if (currentScore > bestScore) {
+          best = intent;
+          bestScore = currentScore;
         }
       }
-      if (best && bestScore >= 0.24) {
+      if (best && bestScore >= 0.22) {
         return {
-          answer: best.answer,
-          source: "knowledge_base",
-          confidence: Math.min(1, bestScore).toFixed(2),
-          matchedQuestion: best.question
+          ...best,
+          confidence: Math.max(best.confidence, Math.min(0.98, bestScore)).toFixed(2),
+          sourceType: "workflow_match"
         };
       }
       return {
-        answer: "I am not fully confident about that answer yet. Please contact support with your order number, or add this question to the knowledge base.",
-        source: "safe_fallback",
-        confidence: bestScore.toFixed(2),
-        matchedQuestion: null
+        id: "fallback",
+        title: "Human handoff",
+        answer: "I am not confident enough to answer that from approved sources. I would route this to a human agent and save the conversation context.",
+        confidence: Math.min(bestScore, 0.41).toFixed(2),
+        action: "Route to human review",
+        sources: ["Fallback rule: low confidence", "Conversation transcript"],
+        sourceType: "safe_fallback"
       };
+    }
+
+    function renderCustomer() {
+      const customer = scenarios[activeScenario].customer;
+      customerRecord.innerHTML = `
+        <div class="row"><span class="label">Name</span><span class="value">${customer.name}</span></div>
+        <div class="row"><span class="label">Account</span><span class="value">${customer.account}</span></div>
+        <div class="row"><span class="label">Record</span><span class="value">${customer.order}</span></div>
+        <div class="row"><span class="label">Status</span><span class="value">${customer.status}</span></div>
+        <div class="row"><span class="label">Value</span><span class="value">${customer.value}</span></div>
+      `;
+    }
+
+    function renderChips() {
+      chips.innerHTML = "";
+      for (const example of scenarios[activeScenario].examples) {
+        const chip = document.createElement("button");
+        chip.className = "chip";
+        chip.type = "button";
+        chip.textContent = example;
+        chip.addEventListener("click", () => submitMessage(example));
+        chips.appendChild(chip);
+      }
+    }
+
+    function updateAgentPanel(result) {
+      const percent = Math.round(Number(result.confidence) * 100);
+      confidenceFill.style.width = `${percent}%`;
+      confidenceLabel.textContent = `Confidence: ${percent}% (${result.sourceType})`;
+      actionCard.innerHTML = `
+        <div class="action-title">${result.action}</div>
+        <div class="small">Intent: ${result.title}</div>
+      `;
+      sources.innerHTML = result.sources.map(source => `<li>${source}</li>`).join("");
     }
 
     function addMessage(text, type, meta = "") {
@@ -313,31 +614,48 @@
       log.scrollTop = log.scrollHeight;
     }
 
+    function resetConversation() {
+      log.innerHTML = "";
+      const scenario = scenarios[activeScenario];
+      addMessage(scenario.greeting, "bot", `${scenario.name} scenario, static browser demo`);
+      confidenceFill.style.width = "0";
+      confidenceLabel.textContent = "Confidence: waiting for question";
+      actionCard.innerHTML = `
+        <div class="action-title">Next action</div>
+        <div class="small">Ask a question to generate a suggested action.</div>
+      `;
+      sources.innerHTML = `<li class="small">No source selected yet.</li>`;
+    }
+
     function submitMessage(message) {
       const clean = message.trim();
       if (!clean) return;
       addMessage(clean, "user");
-      const result = findAnswer(clean);
-      const meta = result.matchedQuestion
-        ? `${result.source}, confidence ${result.confidence}, matched: ${result.matchedQuestion}`
-        : `${result.source}, confidence ${result.confidence}`;
-      addMessage(result.answer, "bot", meta);
+      const result = findIntent(clean);
+      updateAgentPanel(result);
+      addMessage(result.answer, "bot", `${result.sourceType}, confidence ${result.confidence}, action: ${result.action}`);
     }
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", event => {
       event.preventDefault();
       submitMessage(input.value);
       input.value = "";
       input.focus();
     });
 
-    chips.forEach(chip => {
-      chip.addEventListener("click", () => {
-        submitMessage(chip.textContent);
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        activeScenario = tab.dataset.scenario;
+        tabs.forEach(item => item.classList.toggle("active", item === tab));
+        renderCustomer();
+        renderChips();
+        resetConversation();
       });
     });
 
-    addMessage("Hi, I can answer approved FAQ questions about shipping, returns, order status, and support.", "bot", "static demo, no server cost");
+    renderCustomer();
+    renderChips();
+    resetConversation();
   </script>
 </body>
 </html>
